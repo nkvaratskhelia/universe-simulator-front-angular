@@ -3,5 +3,126 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "universe-simulator-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/universe-simulator-app",
+      "sourceRoot": "projects/universe-simulator-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/universe-simulator-app",
+            "index": "projects/universe-simulator-app/src/index.html",
+            "main": "projects/universe-simulator-app/src/main.ts",
+            "polyfills": "projects/universe-simulator-app/src/polyfills.ts",
+            "tsConfig": "projects/universe-simulator-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/universe-simulator-app/src/favicon.ico",
+              "projects/universe-simulator-app/src/assets"
+            ],
+            "styles": [
+              "projects/universe-simulator-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/universe-simulator-app/src/environments/environment.ts",
+                  "with": "projects/universe-simulator-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "universe-simulator-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "universe-simulator-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "universe-simulator-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/universe-simulator-app/src/test.ts",
+            "polyfills": "projects/universe-simulator-app/src/polyfills.ts",
+            "tsConfig": "projects/universe-simulator-app/tsconfig.spec.json",
+            "karmaConfig": "projects/universe-simulator-app/karma.conf.js",
+            "assets": [
+              "projects/universe-simulator-app/src/favicon.ico",
+              "projects/universe-simulator-app/src/assets"
+            ],
+            "styles": [
+              "projects/universe-simulator-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/universe-simulator-app/tsconfig.app.json",
+              "projects/universe-simulator-app/tsconfig.spec.json",
+              "projects/universe-simulator-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/universe-simulator-app/e2e/protractor.conf.js",
+            "devServerTarget": "universe-simulator-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "universe-simulator-app:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "universe-simulator-app"
 }
